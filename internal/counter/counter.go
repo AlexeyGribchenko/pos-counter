@@ -19,7 +19,7 @@ func NewPOSConuter() *POSCounter {
 	adjectivePattern := `(?i)\b\w+(?:y|ous|ive|ful|less|ic|al|able|ible|ish|like|ly|an|ese|que)\b`
 	adverbPattern := `(?i)\b\w+ly\b`
 	verbPattern := `(?i)\b\w+(?:ing|ed|en|s|es|ies|ate|ize|ise|ify|en)\b`
-	wordPattern := `\b[a-zA-Z]+\b`
+	wordPattern := `\b[a-zA-Z0-9]+\b`
 
 	return &POSCounter{
 		adjectiveRegex: regexp.MustCompile(adjectivePattern),
