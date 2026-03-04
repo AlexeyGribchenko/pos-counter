@@ -20,3 +20,11 @@ func FileExists(filename string) bool {
 	}
 	return !info.IsDir()
 }
+
+func WriteFile(filename string, content string) error {
+	err := os.WriteFile(filename, []byte(content), 0644)
+	if err != nil {
+		return fmt.Errorf("failed to write file %s: %w", filename, err)
+	}
+	return nil
+}
