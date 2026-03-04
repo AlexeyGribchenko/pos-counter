@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/AlexeyGribchenko/pos-counter/internal/counter"
 	"github.com/AlexeyGribchenko/pos-counter/internal/fileops"
 	"github.com/AlexeyGribchenko/pos-counter/internal/parser"
 )
@@ -27,5 +28,16 @@ func main() {
 		log.Fatalf("Error reading input file: %v", err)
 	}
 
-	fmt.Printf("File content:\n%s\n", text)
+	posCounter := counter.NewPOSConuter()
+	result := posCounter.Count(text)
+
+	if cfg.OutputFile != "" {
+		err := fileops.WriteFile(cfg.OutputFile, result.String())
+		if err != nil {
+			log.Fatalf("Error writing output file: %v", err)
+		}
+		fmt.Println("Result written to", cfg.OutputFile)
+	} else {
+		fmt.Println(result)
+	}
 }

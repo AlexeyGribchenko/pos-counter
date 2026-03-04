@@ -1,0 +1,5 @@
+POS result:
+  Adjectives:	9
+  Adverbs:	5
+  Verbs:	10
+  Total words:	32
