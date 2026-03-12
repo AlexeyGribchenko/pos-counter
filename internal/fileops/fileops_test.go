@@ -9,7 +9,6 @@ import (
 )
 
 func TestFileExists(t *testing.T) {
-	// Создаем временный файл
 	tmpFile, err := os.CreateTemp("", "testfile*.txt")
 	if err != nil {
 		t.Fatal(err)
@@ -62,7 +61,6 @@ func TestFileExists(t *testing.T) {
 }
 
 func TestReadFile(t *testing.T) {
-	// Создаем временный файл с тестовым содержимым
 	tmpFile, err := os.CreateTemp("", "testread*.txt")
 	if err != nil {
 		t.Fatal(err)
@@ -131,7 +129,6 @@ func TestReadFile(t *testing.T) {
 }
 
 func TestWriteFile(t *testing.T) {
-	// Создаем временную директорию для тестов
 	tmpDir, err := os.MkdirTemp("", "testwrite")
 	if err != nil {
 		t.Fatal(err)
@@ -189,14 +186,12 @@ func TestWriteFile(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			// Выполняем setup если есть
 			if tt.setup != nil {
 				if err := tt.setup(); err != nil {
 					t.Fatalf("Setup failed: %v", err)
 				}
 			}
 
-			// Выполняем тест
 			err := WriteFile(tt.filename, tt.content)
 
 			if tt.expectError {
@@ -208,7 +203,6 @@ func TestWriteFile(t *testing.T) {
 					t.Errorf("Unexpected error: %v", err)
 				}
 
-				// Проверяем, что файл был создан и содержит правильное содержимое
 				if !tt.expectError && tt.filename != "" {
 					content, readErr := os.ReadFile(tt.filename)
 					if readErr != nil {
@@ -224,7 +218,6 @@ func TestWriteFile(t *testing.T) {
 }
 
 func TestReadWriteIntegration(t *testing.T) {
-	// Интеграционный тест: записываем файл, затем читаем его
 	tmpFile, err := os.CreateTemp("", "integration*.txt")
 	if err != nil {
 		t.Fatal(err)
@@ -234,13 +227,11 @@ func TestReadWriteIntegration(t *testing.T) {
 
 	originalContent := "Integration test content\nLine 2\nLine 3"
 
-	// Записываем
 	err = WriteFile(tmpFile.Name(), originalContent)
 	if err != nil {
 		t.Fatalf("WriteFile failed: %v", err)
 	}
 
-	// Читаем
 	readContent, err := ReadFile(tmpFile.Name())
 	if err != nil {
 		t.Fatalf("ReadFile failed: %v", err)
@@ -252,7 +243,6 @@ func TestReadWriteIntegration(t *testing.T) {
 }
 
 func BenchmarkReadFile(b *testing.B) {
-	// Создаем тестовый файл
 	tmpFile, err := os.CreateTemp("", "benchread*.txt")
 	if err != nil {
 		b.Fatal(err)

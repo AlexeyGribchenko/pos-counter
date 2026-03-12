@@ -7,7 +7,6 @@ import (
 )
 
 func TestParseFlags(t *testing.T) {
-	// Сохраняем оригинальные аргументы командной строки
 	originalArgs := os.Args
 	defer func() { os.Args = originalArgs }()
 
@@ -117,7 +116,6 @@ func TestParseFlags(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			// Сбрасываем флаги перед каждым тестом
 			flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 			os.Args = tt.args
 
@@ -160,11 +158,9 @@ func TestParseFlags(t *testing.T) {
 }
 
 func TestParseFlags_HelpDoesNotReturnError(t *testing.T) {
-	// Сохраняем оригинальные аргументы
 	originalArgs := os.Args
 	defer func() { os.Args = originalArgs }()
 
-	// Сбрасываем флаги
 	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 	os.Args = []string{"cmd", "-h", "-i", "input.txt"}
 

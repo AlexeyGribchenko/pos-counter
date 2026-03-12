@@ -160,7 +160,6 @@ func TestPOSCounter_Count(t *testing.T) {
 func TestPOSCounter_Count_EdgeCases(t *testing.T) {
 	counter := NewPOSConuter()
 
-	// Тест с очень длинным текстом
 	longText := strings.Repeat("beautiful unique running jumping ", 1000)
 	result := counter.Count(longText)
 	if result.Adjectives != 2000 { // beautiful, amazing each repeated 1000 times
@@ -170,7 +169,6 @@ func TestPOSCounter_Count_EdgeCases(t *testing.T) {
 		t.Errorf("Long text verbs: got %d, want 2000", result.Verbs)
 	}
 
-	// Тест с числами
 	numbersText := "123 beautiful 456 running 789"
 	result = counter.Count(numbersText)
 	if result.Adjectives != 1 {
