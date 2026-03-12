@@ -38,8 +38,7 @@ jobs:
       run: go test -v -coverprofile=coverage.txt -covermode=atomic ./...
 
     - name: Build application
-      run: |
-        CGO_ENABLED=0 GOOS=linux go build -o pos-counter .
+      run: CGO_ENABLED=0 GOOS=linux go build -o pos-counter ./cmd/pos-counter
 
     - name: Check formatting
       run: |
