@@ -1,5 +1,8 @@
 # Part of Speech Counter
 
+[![CI Pipeline](https://github.com/AlexeyGribchenko/pos-counter/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexeyGribchenko/pos-counter/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/AlexeyGribchenko/pos-counter/badge.svg?branch=main)](https://coveralls.io/github/AlexeyGribchenko/pos-counter?branch=main)
+
 A Go application that counts adjectives, adverbs, and verbs in English text files.
 
 ## Features

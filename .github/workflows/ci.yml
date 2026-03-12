@@ -35,7 +35,15 @@ jobs:
       run: go mod download
 
     - name: Run tests
-      run: go test -v -coverprofile=coverage.txt -covermode=atomic ./...
+      run: go test -v -race -coverprofile=coverage -covermode=atomic ./...
+
+    - name: Install goveralls
+      run: go install github.com/mattn/goveralls@latest
+
+    - name: Send coverage
+      env:
+        COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: goveralls -coverprofile=coverage -service=github
 
     - name: Build application
       run: CGO_ENABLED=0 GOOS=linux go build -o pos-counter ./cmd/poscounter
